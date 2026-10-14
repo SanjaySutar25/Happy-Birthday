@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Beautiful Memories ✨</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg,
+                    #ffd1dc 0%,
+                    #e6e6fa 25%,
+                    #ffefd5 50%,
+                    #e6e6fa 75%,
+                    #ffd1dc 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            color: #4a4a4a;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Enhanced Sparkle Effect */
+        .magic-sparkles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: white;
+            animation: twinkle var(--duration, 4s) ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+        }
+
+        /* Generate 50 sparkles with different positions and animations */
+        .magic-sparkles::before,
+        .magic-sparkles::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, white 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: sparkleLayer 8s linear infinite;
+            opacity: 0.5;
+        }
+
+        .magic-sparkles::after {
+            animation-delay: -4s;
+            transform: rotate(45deg);
+        }
+
+        @keyframes sparkleLayer {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-50px);
+            }
+        }
+
+        /* Floating Hearts */
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(255, 105, 180, 0.6);
+            animation: floatHeart var(--float-duration, 6s) ease-in-out infinite;
+            animation-delay: var(--delay, 0s);
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translate(0, 100vh) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(var(--translate-x, 0), -100vh) rotate(360deg);
+            }
+        }
+
+        /* Welcome Section */
+        .welcome {
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .welcome h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #ff69b4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeInScale 2s ease;
+        }
+
+        .welcome p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 1.5rem auto;
+            line-height: 1.6;
+            animation: fadeIn 2s ease 0.5s both;
+        }
+
+        /* Enhanced Memory Cards */
+        .memory-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            z-index: 3;
+            position: relative;
+        }
+
+        .memory-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .memory-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .memory-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .memory-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            transition: transform 0.5s ease;
+        }
+
+        .memory-card:hover .memory-img {
+            transform: scale(1.05);
+        }
+
+        .memory-date {
+            font-family: 'Dancing Script', cursive;
+            color: #ff69b4;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .memory-caption {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #666;
+        }
+
+        /* Final Message Section */
+        .final-message {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            margin-top: 3rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .final-message h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #ff69b4;
+            margin-bottom: 2rem;
+            animation: heartbeat 2s infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .final-message p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .goodbye-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, #ff69b4, #da70d6);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .goodbye-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Generate Hearts */
+        .js-generate-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #ff69b4, #da70d6);
+            border-radius: 6px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .welcome h1 {
+                font-size: 3rem;
+            }
+
+            .memory-container {
+                grid-template-columns: 1fr;
+            }
+
+            .final-message h2 {
+                font-size: 2.5rem;
+            }
+
+            .floating-music-player {
+                top: 12px;
+                right: 12px;
+                padding: 6px 14px 6px 10px;
+                gap: 8px;
+            }
+
+            .song-title {
+                font-size: 0.8rem;
+            }
+
+            .song-artist {
+                font-size: 0.7rem;
+            }
+
+            .disc-icon {
+                font-size: 1.4rem;
+            }
+
+            .welcome-music-btn {
+                font-size: 1rem;
+                padding: 0.75rem 1.4rem;
+            }
+        }
+
+        /* Floating Music Player */
+        .floating-music-player {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 18px 8px 12px;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 105, 180, 0.4);
+            border-radius: 50px;
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .floating-music-player:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.5);
+            border-color: rgba(255, 105, 180, 0.8);
+        }
+
+        .disc-icon {
+            font-size: 1.8rem;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .disc-icon.playing {
+            animation: spinDisc 3s linear infinite;
+        }
+
+        @keyframes spinDisc {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .music-info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            line-height: 1.25;
+        }
+
+        .song-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #d81b60;
+            white-space: nowrap;
+        }
+
+        .song-artist {
+            font-size: 0.75rem;
+            color: #666;
+            white-space: nowrap;
+        }
+
+        .play-toggle-btn {
+            background: linear-gradient(45deg, #ff69b4, #da70d6);
+            border: none;
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(255, 105, 180, 0.4);
+            transition: transform 0.2s;
+            margin-left: 4px;
+        }
+
+        .play-toggle-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Welcome Section Music Play Button */
+        .welcome-music-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 1.5rem;
+            padding: 0.85rem 2rem;
+            background: linear-gradient(45deg, #ff69b4, #da70d6);
+            color: white;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .welcome-music-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.6);
+        }
+
+        .welcome-music-btn.playing {
+            background: linear-gradient(45deg, #da70d6, #ff1493);
+            animation: musicPulse 2s infinite ease-in-out;
+        }
+
+        @keyframes musicPulse {
+            0%, 100% {
+                box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5);
+            }
+            50% {
+                box-shadow: 0 8px 30px rgba(218, 112, 214, 0.85);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Floating Music Player Widget -->
+    <div class="floating-music-player" id="floatingMusicPlayer" title="Click to Play / Pause Music">
+        <div class="disc-icon" id="discIcon">💿</div>
+        <div class="music-info">
+            <span class="song-title">Chann Chadheya</span>
+            <span class="song-artist">Bharat Chauhan 💕</span>
+        </div>
+        <button class="play-toggle-btn" id="musicToggleBtn" aria-label="Play or Pause Music">
+            <span id="playIcon">▶️</span>
+        </button>
+    </div>
+
+    <!-- Background Audio -->
+    <audio id="bgMusic" src="./Bharat%20Chauhan%20-%20Chann%20Chadheya%20(Official%20Video).mp3" loop preload="auto"></audio>
+
+    <div class="magic-sparkles"></div>
+    <div class="floating-hearts">
+        <!-- Hearts will be generated via CSS -->
+        <div class="heart" style="--float-duration: 6s; --delay: 0s; --translate-x: 20px;">💝</div>
+        <div class="heart" style="--float-duration: 8s; --delay: 1s; --translate-x: -30px;">💖</div>
+        <div class="heart" style="--float-duration: 7s; --delay: 2s; --translate-x: 40px;">💗</div>
+        <div class="heart" style="--float-duration: 9s; --delay: 3s; --translate-x: -20px;">💓</div>
+        <div class="heart" style="--float-duration: 5s; --delay: 4s; --translate-x: 30px;">💕</div>
+    </div>
+
+    <section class="welcome">
+        <h1>Beautiful Moments</h1>
+        <p>Here are some of our most cherished Message</p>
+        <button class="welcome-music-btn" id="welcomeMusicBtn">
+            <span class="music-icon">🎵</span>
+            <span class="music-text">Play "Chann Chadheya" - Bharat Chauhan 💕</span>
+        </button>
+    </section>
+
+    <div class="memory-container">
+        <div class="memory-card">
+            <img src="./d1.png" alt="First Date" class="memory-img">
+            <div class="memory-date">Kaju Katli</div>
+            <div class="memory-caption">You’re truly one of the sweetest girls I know, and I feel lucky to have like
+                you.❤️</div>
+        </div>
+        <div class="memory-card">
+            <img src="./d2.png" alt="Beach Day" class="memory-img">
+            <div class="memory-date">Dhokla</div>
+            <div class="memory-caption">May your journey ahead be filled with happiness, success, and endless
+                smiles.😊💕</div>
+        </div>
+        <div class="memory-card">
+            <img src="./d3.png" alt="Movie Night" class="memory-img">
+            <div class="memory-date">Pretty Soul</div>
+            <div class="memory-caption">Keep being the amazing person you are—you make every moment brighter.🌸💖</div>
+        </div>
+
+    </div>
+
+    <section class="final-message">
+        <h2>A Special Message</h2>
+        <p>Every laugh, every chat, and every moment we’ve shared has been truly special.💫<br>
+            I’m so grateful for the bond we have, and for the positivity you always bring into my life.<br>
+            On your birthday, I just wish for endless happiness, love, and success to come your way.🌸</p>
+        <p>You deserve all the joy in the world—keep shining and spreading your beautiful energy.✨</p>
+        <a href="#" class="goodbye-btn">Until We Meet</a>
+    </section>
+
+    <script>
+        const bgMusic = document.getElementById('bgMusic');
+        const welcomeMusicBtn = document.getElementById('welcomeMusicBtn');
+        const musicToggleBtn = document.getElementById('musicToggleBtn');
+        const floatingMusicPlayer = document.getElementById('floatingMusicPlayer');
+        const playIcon = document.getElementById('playIcon');
+        const discIcon = document.getElementById('discIcon');
+        const musicText = welcomeMusicBtn ? welcomeMusicBtn.querySelector('.music-text') : null;
+        const musicIcon = welcomeMusicBtn ? welcomeMusicBtn.querySelector('.music-icon') : null;
+
+        function updateMusicState(isPlaying) {
+            if (isPlaying) {
+                playIcon.textContent = '⏸️';
+                discIcon.classList.add('playing');
+                if (welcomeMusicBtn) {
+                    welcomeMusicBtn.classList.add('playing');
+                    musicText.textContent = 'Pause Music ⏸️';
+                    musicIcon.textContent = '🎶';
+                }
+            } else {
+                playIcon.textContent = '▶️';
+                discIcon.classList.remove('playing');
+                if (welcomeMusicBtn) {
+                    welcomeMusicBtn.classList.remove('playing');
+                    musicText.textContent = 'Play "Chann Chadheya" - Bharat Chauhan 💕';
+                    musicIcon.textContent = '🎵';
+                }
+            }
+        }
+
+        function togglePlay() {
+            if (bgMusic.paused) {
+                bgMusic.play().then(() => {
+                    updateMusicState(true);
+                }).catch(err => {
+                    console.log("Audio playback error:", err);
+                });
+            } else {
+                bgMusic.pause();
+                updateMusicState(false);
+            }
+        }
+
+        if (welcomeMusicBtn) {
+            welcomeMusicBtn.addEventListener('click', togglePlay);
+        }
+        if (floatingMusicPlayer) {
+            floatingMusicPlayer.addEventListener('click', togglePlay);
+        }
+
+        bgMusic.addEventListener('play', () => updateMusicState(true));
+        bgMusic.addEventListener('pause', () => updateMusicState(false));
+
+        // Attempt autoplay on page load if allowed
+        window.addEventListener('load', () => {
+            bgMusic.play().then(() => {
+                updateMusicState(true);
+            }).catch(() => {
+                // Browser policy blocked autoplay until user gesture
+                updateMusicState(false);
+            });
+        });
+    </script>
+</body>
+
+</html>
