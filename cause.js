@@ -34,20 +34,21 @@ function createReasonCard(reason) {
     const card = document.createElement('div');
     card.className = 'reason-card';
     
+    const gifContainer = document.createElement('div');
+    gifContainer.className = 'card-gif-wrap';
+    gifContainer.innerHTML = `<img src="${reason.gif}" class="card-gif" alt="Friendship Memory">`;
+    
     const text = document.createElement('div');
     text.className = 'reason-text';
-    text.innerHTML = `${reason.emoji} ${reason.text}`;
+    text.innerHTML = `<span class="reason-emoji">${reason.emoji}</span> ${reason.text}`;
     
-    const gifOverlay = document.createElement('div');
-    gifOverlay.className = 'gif-overlay';
-    gifOverlay.innerHTML = `<img src="${reason.gif}" alt="Friendship Memory">`;
-    
+    card.appendChild(gifContainer);
     card.appendChild(text);
-    card.appendChild(gifOverlay);
     
     gsap.from(card, {
         opacity: 0,
-        y: 50,
+        y: 40,
+        scale: 0.95,
         duration: 0.5,
         ease: "back.out"
     });

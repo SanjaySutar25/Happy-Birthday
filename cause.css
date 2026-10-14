@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Comic+Neue:wght@700&family=Quicksand:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Comic+Neue:wght@700&family=Quicksand:wght@500;600&display=swap');
 
 * {
     margin: 0;
@@ -14,7 +14,7 @@ body {
     animation: gradientBG 15s ease infinite;
     font-family: 'Quicksand', sans-serif;
     overflow-x: hidden;
-    padding: 2rem;
+    padding: 2rem 1.5rem;
 }
 
 .custom-cursor {
@@ -34,7 +34,7 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
     text-align: center;
     position: relative;
@@ -50,82 +50,103 @@ h1 {
     animation: bounce 1s ease infinite;
 }
 
-.reason-card {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 20px;
-    padding: 1.5rem 2rem;
-    margin: 1.5rem auto;
-    max-width: 900px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    min-height: 100px;
+#reasons-container {
     display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.reason-card {
+    background: rgba(255, 255, 255, 0.94);
+    border-radius: 24px;
+    padding: 1.2rem 2rem;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 750px;
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.18);
+    border: 2px solid rgba(255, 182, 193, 0.4);
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 0.8rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .reason-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(255, 105, 180, 0.3);
+    border-color: rgba(255, 105, 180, 0.6);
 }
 
-.reason-text {
-    font-size: 1.2rem;
-    margin: 0;
-    position: relative;
-    z-index: 2;
-    transition: opacity 0.3s;
-}
-
-.gif-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.96);
+.card-gif-wrap {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 3;
-    padding: 8px;
-    box-sizing: border-box;
 }
 
-.gif-overlay img {
-    max-height: 84px;
-    max-width: 90%;
-    height: auto;
-    width: auto;
-    object-fit: contain;
+.card-gif,
+.card-gif-wrap img,
+.reason-card img {
+    height: 80px !important;
+    max-height: 80px !important;
+    max-width: 130px !important;
+    width: auto !important;
+    object-fit: contain !important;
     border-radius: 12px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.08));
 }
 
-.reason-card:hover .gif-overlay {
-    opacity: 1;
+.reason-text {
+    font-size: 1.25rem;
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin: 0;
+    text-align: center;
+    max-width: 95%;
+}
+
+.reason-emoji {
+    font-size: 1.4rem;
+    margin-right: 4px;
+    vertical-align: middle;
 }
 
 .shuffle-button {
     background: linear-gradient(45deg, #ff69b4, #ff99cc);
     border: none;
     border-radius: 50px;
-    padding: 1rem 2rem;
+    padding: 1rem 2.2rem;
     font-size: 1.2rem;
     color: white;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     cursor: pointer;
-    transition: transform 0.3s;
+    transition: all 0.3s ease;
     font-family: 'Comic Neue', cursive;
-    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.35);
 }
 
 .shuffle-button:hover {
-    transform: scale(1.1);
+    transform: scale(1.08);
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.5);
+}
+
+.shuffle-button.story-mode {
+    background: linear-gradient(45deg, #9b6dff, #ff6dc7);
+    transform: scale(1.08);
+}
+
+.shuffle-button.story-mode:hover {
+    transform: scale(1.15);
+}
+
+.reason-counter {
+    font-size: 0.95rem;
+    color: #ff69b4;
+    margin-top: 0.5rem;
+    opacity: 0.8;
+    font-weight: 600;
 }
 
 .floating {
@@ -135,8 +156,8 @@ h1 {
 }
 
 .ending-section {
-    margin-top: 4rem;
-    padding: 2rem;
+    margin-top: 3rem;
+    padding: 1.5rem;
     text-align: center;
 }
 
@@ -155,6 +176,12 @@ h1 {
     transform: scale(0);
 }
 
+.teddy-hug img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 16px;
+}
+
 @keyframes gradientBG {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -171,41 +198,45 @@ h1 {
     50% { transform: translateY(-10px); }
 }
 
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
-    h1 { font-size: 2rem; }
-    .reason-card { margin: 1rem; }
-    .reason-text { font-size: 1rem; }
-}
-.shuffle-button {
-    background: linear-gradient(45deg, #ff69b4, #ff99cc);
-    border: none;
-    border-radius: 50px;
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-    color: white;
-    margin: 2rem 0;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-family: 'Comic Neue', cursive;
-    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
-}
+    * {
+        cursor: auto !important;
+    }
 
-.shuffle-button.story-mode {
-    background: linear-gradient(45deg, #9b6dff, #ff6dc7);
-    transform: scale(1.1);
-}
+    body {
+        padding: 1rem 0.8rem;
+    }
 
-.shuffle-button:hover {
-    transform: scale(1.1);
-}
+    h1 {
+        font-size: 1.9rem;
+        margin-bottom: 1.2rem;
+    }
 
-.shuffle-button.story-mode:hover {
-    transform: scale(1.2);
-}
+    .reason-card {
+        padding: 1rem 1.2rem;
+        border-radius: 18px;
+        gap: 0.5rem;
+    }
 
-.reason-counter {
-    font-size: 0.9rem;
-    color: #ff69b4;
-    margin-top: 1rem;
-    opacity: 0.7;
+    .card-gif {
+        height: 75px;
+        max-width: 110px;
+    }
+
+    .reason-text {
+        font-size: 1.05rem;
+        line-height: 1.5;
+        max-width: 100%;
+    }
+
+    .shuffle-button {
+        font-size: 1.05rem;
+        padding: 0.85rem 1.8rem;
+    }
+
+    /* Touch screen: disable stuck cursor */
+    .custom-cursor {
+        display: none !important;
+    }
 }
